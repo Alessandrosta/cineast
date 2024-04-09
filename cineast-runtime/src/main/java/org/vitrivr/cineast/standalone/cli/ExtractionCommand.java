@@ -188,6 +188,7 @@ public class ExtractionCommand extends AbstractCineastCommand {
     }
     for (var manifestUrl : manifestUrls) {
       if (manifestUrl != null && !manifestUrl.isEmpty()) {
+        LOGGER.info("Processing IIIF Presentation API job for manifest at url: {}", manifestUrl);
         try {
           var manifestFactory = new ManifestFactory(manifestUrl);
           var pathSafeManifestUrl = manifestUrl.replaceAll("[^a-zA-Z0-9.\\-]", "_");

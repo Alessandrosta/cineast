@@ -44,7 +44,11 @@ public class ManifestFactory {
    * Save all images in the canvasses along with their respective {@link MetadataJson} metadata.iiif files
    */
   public void saveAllCanvasImages(String jobDirectoryString) throws IOException, UnsupportedIIIFAPIException {
-    for (var imageUrl : manifest.getImageUrls()) {
+    var imageUrls = manifest.getImageUrls();
+    var imageCount = imageUrls.size();
+    LOGGER.info("Downloading images from manifest: {} images found.", imageCount);
+    for (var imageUrl : imageUrls) {
+      LOGGER.info("Downloading image: {}", imageUrl);
       var imageRequest = ImageRequest.fromUrlIgnoreParams(imageUrl);
       ImageFetcher.fetch(imageRequest, jobDirectoryString);
       var imageMetadata = new ImageMetadata();
