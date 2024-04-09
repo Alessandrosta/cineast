@@ -8,29 +8,22 @@
       "properties": {}
     },
     "iiif": {
-      "imageApiUrl": "https://libimages.princeton.edu/loris/pudl0001/5138415",
-      "imageApiVersion": "2.1.1",
-      "keepImagesPostExtraction": true,
-      "rotation": 10,
-      "items": [
+      "keepImagesPostExtraction": false,
+      "items":
+      [
         {
-          "identifier": "00000010.jp2",
-          "region": "square"
+          "identifier": "https://libimages.princeton.edu/loris/pudl0001/5138415/00000010.jp2/info.json"
         },
         {
-          "identifier": "00000011.jp2",
-          "rotation": 90,
-          "quality": "gray"
+          "identifier": "https://libimages.princeton.edu/loris/pudl0001/5138415/00000011.jp2/info.json"
         },
         {
-          "identifier": "00000012.jp2",
-          "rotation": 180,
-          "quality": "bitonal",
-          "format": "png"
+          "identifier": "https://libimages.princeton.edu/loris/pudl0001/5138415/00000012.jp2/info.json"
         }
       ],
-      "manifestUrl": "https://dms-data.stanford.edu/data/manifests/Parker/bg021sq9590/manifest.json",
-      "orderedCollectionUrl":  "https://haab-digital.klassik-stiftung.de/viewer/api/v1/records/changes/"
+      "manifestUrls": [
+        "https://purl.stanford.edu/nb647fd0133/iiif/manifest.json"
+      ]
     }
   },
   "extractors": [
@@ -87,13 +80,14 @@
     {
       "name": "ShotThumbnailsExporter",
       "properties": {
-        "destination": "thumbnails/"
+        "destination": "iiif_thumbnails/"
       }
     }
   ],
   "database": {
-    "writer": "COTTONTAIL",
-    "selector": "COTTONTAIL"
+    "host": "iiif_features/",
+    "writer": "JSON",
+    "selector": "NONE"
   },
   "metadata": [
     {
