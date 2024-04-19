@@ -472,9 +472,14 @@ public class GenericExtractionItemHandler implements Runnable, ExtractionItemPro
         if (Files.isDirectory(item.getPathForExtraction())) {
           LOGGER.debug("Not processing directory {}. Its content might be processed, but the directory itself is only processed for IMAGE_SEQUENCES. If you wish to use those, please specify the type explicitly in the extraction config.", item.getPathForExtraction());
         } else {
-          /* If no appropriate handler is found, we log an error and continue with the next item */
-          LOGGER.error("No matching handlers found for type {} and item {}", type, item);
-          handlers.forEach((key, value) -> LOGGER.debug(key + " | " + value));
+          /* in case of .iiif or .json file ignore and go on */
+          if (item.toString().contains(".iiif") || item.toString().contains(".json")){
+            ;
+          } else{
+            /* If no appropriate handler is found, we log an error and continue with the next item */
+            LOGGER.error("No matching handlers found for type {} and item {}", type, item);
+            handlers.forEach((key, value) -> LOGGER.debug(key + " | " + value));
+          }
         }
       }
       //TODO Add support for separate filesystems.
